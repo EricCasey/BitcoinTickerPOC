@@ -4,7 +4,6 @@ import socketCluster from 'socketcluster-client';
 
 const {Chart, Dots, Lines, Ticks} = require('rumble-charts');
 
-
 var api_credentials = {
       "apiKey"    : "14dc3518d7aa62a58349c89a802d93c9",
       "apiSecret" : "da5ba874b42ae019d3541ff302aa3307"
@@ -23,7 +22,8 @@ class App extends Component {
     this.state = {
       priceData : [ ],
       currentPrice: 0,
-      count: 0
+      count: 0,
+      firstPrice: 0
     }
   };
 
@@ -40,6 +40,11 @@ class App extends Component {
                 //console.log(scChannel);
                 scChannel.watch(function (data) {
                     console.log(data.Data[0].last_price);
+                    if(this.state.firstPrice === 0) {
+                      this.setState({
+                        firstPrice: data.Data[0].last_price
+                      })
+                    }
                     var lastBTCUSDprice = data.Data[0].last_price;
                     var currentCount = this.state.count + 1
                     this.setState({
@@ -72,6 +77,12 @@ class App extends Component {
           </div>
           <div id="count">
             Count: {this.state.count}
+          </div>
+          <div id="firstPrice">
+            FirstPrice: {this.state.firstPrice}
+          </div>
+          <div id="delta">
+            Delta Since First Load: {((this.state.currentPrice-this.state.firstPrice)/this.state.firstPrice*100).toFixed(2)}%
           </div>
           <div>
             <Chart
