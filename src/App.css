@@ -35,3 +35,8 @@
   margin: 0 auto;
   height: 300px;
 }
+
+circle {
+  color: red;
+  fill: red;
+}
