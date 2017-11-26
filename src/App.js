@@ -5,8 +5,8 @@ import socketCluster from 'socketcluster-client';
 const {Chart, Dots, Lines, Ticks} = require('rumble-charts');
 
 var api_credentials = {
-      "apiKey"    : "14dc3518d7aa62a58349c89a802d93c9",
-      "apiSecret" : "da5ba874b42ae019d3541ff302aa3307"
+      "apiKey"    : "x",
+      "apiSecret" : "x"
     }
 
 var options = {
